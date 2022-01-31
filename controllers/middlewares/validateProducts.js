@@ -1,5 +1,12 @@
 const productsService = require('../../service/productsService');
 
+const validateProduct = async (req, res, next) => {
+  const product = await productsService.getById(req.params.id);
+  if (!product) return res.status(404).json({ message: 'Product not found' });
+
+  next();
+};
+
 const validateName = async (req, res, next) => {
   const { name } = req.body;
 
@@ -31,4 +38,4 @@ const validateQuantity = (req, res, next) => {
   next();
 };
 
-module.exports = { validateName, validateQuantity };
+module.exports = { validateProduct, validateName, validateQuantity };
