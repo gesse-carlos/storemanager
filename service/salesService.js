@@ -7,7 +7,7 @@ const getAll = async () => salesModel.getAll();
 
 const getById = async (id) => salesModel.getById(id);
 
-const update = async ({ id, quantity }) => salesModel.update(id, quantity);
+const update = async ({ product_id: id, quantity }) => salesModel.update(id, quantity);
 
 const updateProductQuantity = async (sales) => {
   const updateQuantity = sales.map(async (sale) => {

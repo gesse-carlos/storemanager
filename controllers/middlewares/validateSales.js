@@ -35,6 +35,7 @@ const validateProductQuantity = async (req, res, next) => {
   if (products.some((quantity, index) => quantity <= req.body[index].quantity)) {
     return res.status(422).json({ message: 'Such amount is not permitted to sell' });
   }
+
   next();
 };
 

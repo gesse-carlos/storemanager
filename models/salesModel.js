@@ -1,7 +1,7 @@
 const connection = require('./connection');
 
 const add = async (sales) => {
-  const [row] = connection.execute(
+  const [row] = await connection.execute(
     'INSERT INTO sales (date) VALUES (NOW())',
   );
 
@@ -14,7 +14,6 @@ const add = async (sales) => {
       [row.insertId, productId, quantity],
     );
   });
-
   await Promise.all(salesProducts);
 
   return row;
