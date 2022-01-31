@@ -10,6 +10,12 @@ const update = async (id, name, quantity) => productsModel.update(id, name, quan
 
 const remove = async (id) => productsModel.remove(id);
 
+const checkProductQuantity = async (id) => {
+  const product = await getById(id);
+
+  return product.quantity;
+};
+
 module.exports = {
   add,
   getAll,
