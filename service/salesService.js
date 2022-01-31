@@ -25,9 +25,23 @@ const updateProductQuantity = async (sales) => {
   return createSale;
 };
 
+const remove = async (id) => {
+  const [sale] = await getById(id);
+
+  const product = await productsService.getById(sale.product_id);
+  product.quantity += sale.quantity;
+
+  const removeSale = await salesModel.remove(id);
+
+  await productsService.update(product);
+
+  return removeSale;
+};
+
 module.exports = {
   add: updateProductQuantity,
   getAll,
   getById,
   update,
+  remove,
 };

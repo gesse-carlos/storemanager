@@ -22,12 +22,12 @@ const add = async (sales) => {
 const getAll = async () => {
   const [row] = await connection.execute(
     `SELECT sp.sale_id AS saleId,
-    s.date AS data,
+    s.date AS date,
     sp.product_id AS product_id,
-    sp.quantity AS quantity,
+    sp.quantity AS quantity
     FROM sales_products AS sp
     INNER JOIN sales AS s
-    ON s.id = sp.sale_id
+    ON s.id = sp.sale_id;
     `,
   );
 
@@ -35,7 +35,7 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  const [[row]] = await connection.execute(
+  const [row] = await connection.execute(
     `SELECT s.date AS date,
     sp.product_id AS product_id,
     sp.quantity AS quantity
@@ -53,9 +53,15 @@ const update = async (id, quantity) => {
   await connection.execute(
     `UPDATE sales_products
       SET quantity = ?
-      WHERE id = ?
+      WHERE product_id = ?
     `,
     [quantity, id],
+  );
+};
+
+const remove = async (id) => {
+  await connection.execute(
+    'DELETE FROM sales WHERE id = ?', [id],
   );
 };
 
@@ -64,4 +70,5 @@ module.exports = {
   getAll,
   getById,
   update,
+  remove,
 };

@@ -7,7 +7,7 @@ const { validateSales:
     validateProductQuantity,
   },
 } = require('./middlewares');
-const { add, getAll, getById, update } = require('./productsController');
+const { add, getAll, getById, update, remove } = require('./salesController');
 
 Sales.post(
   '/',
@@ -33,6 +33,11 @@ Sales.put(
   validateSales,
   validateProductQuantity,
   update,
+);
+
+Sales.delete(
+  '/:id',
+  remove,
 );
 
 module.exports = Sales;
