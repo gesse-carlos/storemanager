@@ -29,7 +29,7 @@ const getById = async (id) => {
 };
 
 const update = async (id, name, quantity) => {
-  const [[row]] = await connection.execute(
+  await connection.execute(
     `UPDATE products
       SET name = ?, quantity = ?
       WHERE id = ?
@@ -37,7 +37,7 @@ const update = async (id, name, quantity) => {
     [name, quantity, id],
   );
 
-  return row;
+  return { id, name, quantity };
 };
 
 const remove = async (id) => {
