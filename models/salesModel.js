@@ -21,17 +21,30 @@ const add = async (sales) => {
 };
 
 const getAll = async () => {
-  const [row] = await connection.execute('SELECT * FROM sales');
+  const [row] = await connection.execute(
+    `SELECT sp.sale_id AS saleId,
+    s.date AS data,
+    sp.product_id AS product_id,
+    sp.quantity AS quantity,
+    FROM sales_products AS sp
+    INNER JOIN sales AS s
+    ON s.id = sp.sale_id
+    `,
+  );
 
   return row;
 };
 
 const getById = async (id) => {
   const [[row]] = await connection.execute(
-    `SELECT * FROM sales
-      WHERE id = ?
-    `,
-    [id],
+    `SELECT s.date AS date,
+    sp.product_id AS product_id,
+    sp.quantity AS quantity
+    FROM sales_products AS sp
+    INNER JOIN sales AS s
+    ON s.id = sp.sale_id
+    WHERE sp.sale_id = ?
+    `, [id],
   );
 
   return row;
