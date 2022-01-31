@@ -34,3 +34,5 @@ Sales.put(
   validateProductQuantity,
   update,
 );
+
+module.exports = Sales;

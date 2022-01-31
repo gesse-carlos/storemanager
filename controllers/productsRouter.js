@@ -30,3 +30,5 @@ Products.delete(
   '/:id',
   remove,
 );
+
+module.exports = Products;
