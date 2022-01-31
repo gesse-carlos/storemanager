@@ -22,4 +22,5 @@ module.exports = {
   getById,
   update,
   remove,
+  checkProductQuantity,
 };
