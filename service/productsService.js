@@ -1,6 +1,6 @@
 const { productsModel } = require('../models');
 
-const add = async ({ name, quantity }) => productsModel.add(name, quantity);
+const add = async (name, quantity) => productsModel.add(name, quantity);
 
 const getAll = async () => productsModel.getAll();
 
