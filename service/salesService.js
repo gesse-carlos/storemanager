@@ -6,7 +6,7 @@ const getAll = async () => salesModel.getAll();
 
 const getById = async (id) => salesModel.getById(id);
 
-const update = async (id) => salesModel.update(id);
+const update = async (id, quantity) => salesModel.update(id, quantity);
 
 module.exports = {
   add,
